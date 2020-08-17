@@ -3,45 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Todo List</title>
+    <title>Edit Item</title>
 </head>
 <body>
-    <h1>Things I need to do:</h1>
-    <br>
-    <table>
-        {% for item in items %}
-            <tr>
-                {% if item.done %}
-                    <td><strike>{{ item.name }}</strike></td>
-                {% else %}
-                    <td>{{ item.name }}</td>
-                {% endif %}
-                <td>
-                    <a href="/toggle/{{ item.id }}">
-                        <button>Toggle</button>
-                    </a>
-                </td>
-                <br>
-                <td>
-                    <a href="/edit/{{ item.id }}">
-                        <button>Edit</button>
-                    </a>
-                </td>
-                <br>
-                <td>
-                    <a href="/delete/{{ item.id }}">
-                        <button>Delete</button>
-                    </a>
-                </td> 
-                <br>               
-            </tr>
-            <br>
-        {% empty %}
+<h1>Edit a Todo Item:</h1>
+ <form method="POST">
+   {% csrf_token %}
+   {{ form.as_p }}
+
+    <div>
+    <p>  
+         <button type="submit">
+            Update Item
+          </button>
+      </p>
+    </div>
     
-            <tr><td>You have nothing to do.</td></tr>
-        {% endfor %}
-    </table>
-    <a href="/add">Add an Item</a>
+ </form>
 </body>
 </html>
